@@ -130,6 +130,7 @@ LOGIN_REDIRECT_URL = '/'
 SITE_ID = 1 # Required
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de queres que se autentique por email
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Options are 'mandatory', 'optional', 'none'
 
