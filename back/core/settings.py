@@ -31,6 +31,7 @@ INSTALLED_APPS = [
 
     "corsheaders",
     'rest_framework',
+    'django_filters', # Used by DRF ('markdown' package also but not listed here)
 
     'allauth',
     'allauth.account',
@@ -110,7 +111,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 PASSWORD_HASHERS = [
-    'django.contrib.auth.hashers.Argon2PasswordHasher', # Argon2 is the hasher Recommended
+    # Argon2 is the hasher Recommended (argon2_cffi has to be installed)
+    'django.contrib.auth.hashers.Argon2PasswordHasher', 
     'django.contrib.auth.hashers.PBKDF2PasswordHasher',
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
@@ -155,6 +157,18 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 FRONT_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 STATICFILES_DIRS = [FRONT_BASE_DIR / "front/bulid/static", ] # build/static to serve files from React
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 12
+}
+
 
 
 AUTH_USER_MODEL = 'authentication.User'
