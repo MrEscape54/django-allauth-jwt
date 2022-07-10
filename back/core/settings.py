@@ -5,6 +5,10 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Ruta a folder front
+FRONT_BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
@@ -70,7 +74,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'build'], # Para conectar con React
+        'DIRS': [FRONT_BASE_DIR / 'front/build'], # Para conectar con React
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -155,13 +159,13 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-FRONT_BASE_DIR = Path(__file__).resolve().parent.parent.parent
-STATICFILES_DIRS = [FRONT_BASE_DIR / "front/bulid/static", ] # build/static to serve files from React
+STATICFILES_DIRS = [FRONT_BASE_DIR / "front/build/static", ] # build/static to serve files from React
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly'
     ],
+    # djangorestframework-simplejwt package needed
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
