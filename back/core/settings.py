@@ -26,9 +26,14 @@ INSTALLED_APPS = [
     'django.contrib.sites', # AllAuth requires this app
 
     #Third party
+    'ckeditor',
+    'ckeditor_uploader',
+
+    "corsheaders",
+    'rest_framework',
+
     'allauth',
     'allauth.account',
-
     # The fllowing to include providers you want to enable:
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
@@ -39,8 +44,18 @@ INSTALLED_APPS = [
 
 ]
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'autoParagraph': False,
+    },
+}
+CKEDITOR_UPLOAD_PATH = "/media/"
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware", #CORS
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware", # Whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -54,7 +69,7 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'build'], # Para conectar con React
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,6 +91,31 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
+DATABASES['default']['ATOMIC_REQUESTS'] = True
+
+# A list of origins that are authorized to make cross-site HTTP request
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+# CORS Cross-Site Request Forgery protection
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.Argon2PasswordHasher', # Argon2 is the hasher Recommended
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.ScryptPasswordHasher',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -100,18 +140,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / 'static'
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
+
+FRONT_BASE_DIR = Path(__file__).resolve().parent.parent.parent
+STATICFILES_DIRS = [FRONT_BASE_DIR / "front/bulid/static", ] # build/static to serve files from React
+
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -133,8 +177,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de queres que se autentique por email
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Options are 'mandatory', 'optional', 'none'
-
 # TODO: ACCOUNT_MAX_EMAIL_ADDRESSES(=None) 
+
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

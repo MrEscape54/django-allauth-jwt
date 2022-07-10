@@ -4,11 +4,17 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "==4.0.6"
+django = {extras = ["argon2"], version = "*"}
 python-decouple = "==3.6"
 psycopg2 = "==2.9.*"
 dj-database-url = "==0.5.*"
 django-allauth = "==0.43.*"
+django-ckeditor = "==6.4.*"
+pillow = "==9.2.*"
+install = "*"
+whitenoise = "==6.2.*"
+django-cors-headers = "==3.13.*"
+djangorestframework = "==3.13.*"
 
 [dev-packages]
 
