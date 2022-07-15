@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "035e533656aa0a2397dfbf1ead53317f197b2e2a8782f2a7e5a37fec693fafdd"
+            "sha256": "ce08a1c25026b57285e920a2766ecdc27e76368af206910fe84ad31af5b4b6e1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -186,6 +186,13 @@
             "index": "pypi",
             "version": "==0.5.0"
         },
+        "dj-rest-auth": {
+            "hashes": [
+                "sha256:cf15155756b60a02842c54af62a213975c4eed250a2cce5d31b80dc6cf8592f1"
+            ],
+            "index": "pypi",
+            "version": "==2.2.4"
+        },
         "django": {
             "extras": [
                 "argon2"
@@ -199,10 +206,10 @@
         },
         "django-allauth": {
             "hashes": [
-                "sha256:0bfb975fe46e8bff67effb3fa46dea5acd7c66140cb78b5ed92c533f639898e2"
+                "sha256:ee3a174e249771caeb1d037e64b2704dd3c56cfec44f2058fae2214b224d35e8"
             ],
             "index": "pypi",
-            "version": "==0.43.0"
+            "version": "==0.50.0"
         },
         "django-ckeditor": {
             "hashes": [
@@ -373,7 +380,9 @@
             "version": "==2.21"
         },
         "pyjwt": {
-            "extras": [],
+            "extras": [
+                "crypto"
+            ],
             "hashes": [
                 "sha256:72d1d253f32dbd4f5c88eaf1fdc62f3a19f676ccbadb9dbc5d07e951b2b26daf",
                 "sha256:d42908208c699b3b973cbeb01a969ba6a96c821eefb1c5bfe4c390c01d67abba"

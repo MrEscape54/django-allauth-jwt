@@ -36,7 +36,10 @@ INSTALLED_APPS = [
 
     "corsheaders",
     'rest_framework',
+    'rest_framework.authtoken',
     'django_filters', # Used by DRF ('markdown' package also but not listed here)
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 
     'allauth',
     'allauth.account',
@@ -44,6 +47,9 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'allauth.socialaccount.providers.github',
     'allauth.socialaccount.providers.google',
+
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
 
     #Apps
     'apps.authentication',
@@ -179,12 +185,12 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
-
     'AUTH_HEADER_TYPES': ('JWT',),
-    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
-
-    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
 }
+
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'my-app-auth'
+JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 
 AUTH_USER_MODEL = 'authentication.User'
 
@@ -208,6 +214,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de queres que se autentique po
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Options are 'mandatory', 'optional', 'none'
 # TODO: Chequear
 ACCOUNT_MAX_EMAIL_ADDRESSES = 2
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 
 if DEBUG:
