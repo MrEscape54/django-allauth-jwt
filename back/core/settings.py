@@ -214,7 +214,6 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de queres que se autentique po
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Options are 'mandatory', 'optional', 'none'
 # TODO: Chequear
 ACCOUNT_MAX_EMAIL_ADDRESSES = 2
-ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
 
 if DEBUG:
