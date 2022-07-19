@@ -30,7 +30,8 @@ function Signup({ signup }) {
       password1,
       password2
     )
-    setAccountCreated(true)
+    setAccountCreated(true);
+    window.scrollTo(0, 0);
   }
 
   return (
@@ -190,10 +191,6 @@ function Signup({ signup }) {
     </Layout >
   )
 }
-const mapStateToProps = state => ({
+const mapStateToProps = state => ({})
 
-})
-
-export default connect(mapStateToProps, {
-  signup
-})(Signup)
+export default connect(mapStateToProps, { signup })(Signup)

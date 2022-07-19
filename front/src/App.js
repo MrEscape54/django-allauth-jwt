@@ -21,7 +21,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path='/signup' element={<Signup />} />
           <Route exact path='/login' element={<Login />} />
-          <Route exact path='/registration/account-confirm-email/:token' element={<Activate />} />
+          <Route exact path='/registration/verify-email/:key' element={<Activate />} />
         </Routes>
       </Router>
     </Provider>
