@@ -6,7 +6,6 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('authentication/', include('apps.authentication.urls')), #TODO: solo para listar users mediante DRF
     path('accounts/', include('allauth.urls')),
     path('auth/', include('dj_rest_auth.urls')),
     path('registration/', include('dj_rest_auth.registration.urls')),

@@ -11,6 +11,7 @@ function Signup({ signup }) {
     window.scrollTo(0, 0)
   }, [])
 
+  // eslint-disable-next-line no-unused-vars
   const [accountCreated, setAccountCreated] = useState(false)
 
   const [formData, setFormData] = useState({

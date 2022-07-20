@@ -9,6 +9,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Ruta a folder front
 FRONT_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
+# Used to send email with the right URL
+FRONT_URL = "http://localhost:3000"
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
@@ -210,7 +213,7 @@ SITE_ID = 1 # Required
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de queres que se autentique por email
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de querer que se autentique por email
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Options are 'mandatory', 'optional', 'none'
 # TODO: Chequear
 ACCOUNT_MAX_EMAIL_ADDRESSES = 2
