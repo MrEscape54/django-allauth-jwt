@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 FRONT_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Used to send email with the right URL
-FRONT_URL = "http://localhost:3000"
+URL_FRONT = "http://localhost:3000/"
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -217,6 +217,9 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email' # En caso de querer que se autentique po
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Options are 'mandatory', 'optional', 'none'
 # TODO: Chequear
 ACCOUNT_MAX_EMAIL_ADDRESSES = 2
+
+# Custom adapter para redefinir la URL que se envía para verificar el usuario
+ACCOUNT_ADAPTER = 'apps.authentication.adapter.CustomAccountAdapter'
 
 
 if DEBUG:
